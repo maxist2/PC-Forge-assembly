@@ -3,38 +3,17 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
 
-import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { IndexComponent } from "./pages/index/index.component";
+import { ProfilepageComponent } from "./pages/examples/profilepage/profilepage.component";
+import { RegisterpageComponent } from "./pages/examples/registerpage/registerpage.component";
+import { LandingpageComponent } from "./pages/examples/landingpage/landingpage.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: "dashboard",
-    pathMatch: "full"
-  },
-  {
-    path: "",
-    component: AdminLayoutComponent,
-    children: [
-      {
-        path: "",
-        loadChildren: () => import ("./layouts/admin-layout/admin-layout.module").then(m => m.AdminLayoutModule)
-      }
-    ]
-  }, {
-    path: "",
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: "",
-        loadChildren: () => import ("./layouts/auth-layout/auth-layout.module").then(m => m.AuthLayoutModule)
-      }
-    ]
-  },
-  {
-    path: "**",
-    redirectTo: "dashboard"
-  }
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "home", component: IndexComponent },
+  { path: "profile", component: ProfilepageComponent },
+  { path: "register", component: RegisterpageComponent },
+  { path: "landing", component: LandingpageComponent }
 ];
 
 @NgModule({
@@ -45,6 +24,6 @@ const routes: Routes = [
       useHash: true
     })
   ],
-  exports: [RouterModule]
+  exports: []
 })
 export class AppRoutingModule {}
